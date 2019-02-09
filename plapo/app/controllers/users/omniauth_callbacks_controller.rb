@@ -17,22 +17,22 @@ module Users
       sign_in(:user, @resource, store: false, bypass: false)
 
       # 動作確認用にユーザ情報を保存できたらjsonをそのまま返す処理
-      if @resource.save!
-        # update_token_authをつけることでレスポンスヘッダーに認証情報を付与できる。
-        update_auth_header
-        yield @resource if block_given?
-        render json: @resource, status: :ok
-      else
-        render json: { message: "failed to login" }, status: 500
-      end
+      # if @resource.save!
+      #   # update_token_authをつけることでレスポンスヘッダーに認証情報を付与できる。
+      #   update_auth_header
+      #   yield @resource if block_given?
+      #   render json: @resource, status: :ok
+      # else
+      #   render json: { message: "failed to login" }, status: 500
+      # end
 
       # 本実装時はこちらを使用する
-      # @resource.save!
-      #       
-      # update_auth_header # これは自分で追加する
-      # yield @resource if block_given?
-      #
-      # render_data_or_redirect('deliverCredentials', @auth_params.as_json, @resource.as_json)
+      @resource.save!
+            
+      update_auth_header # これは自分で追加する
+      yield @resource if block_given?
+      
+      render_data_or_redirect('deliverCredentials', @auth_params.as_json, @resource.as_json)
 
     end
 

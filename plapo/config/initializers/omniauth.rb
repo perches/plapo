@@ -8,5 +8,14 @@ Rails.application.config.middleware.use OmniAuth::Builder do
    provider :twitter,
    OAUTH_CONFIG[:twitter]['key'],
    OAUTH_CONFIG[:twitter]['secret']
-
 end
+
+Rails.application.config.to_prepare do
+   Devise::OmniauthCallbacksController.class_eval do
+     def failure
+       # 認証をキャンセルした場合
+       # TODO: 認証キャンセルの場合にはトップ画面かどこかにリダイレクト
+       render json: { message: "Login failed." }, status: 401
+     end
+   end
+ end
