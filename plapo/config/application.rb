@@ -21,12 +21,20 @@ module Plapo
   class Application < Rails::Application
     config.load_defaults 5.2
     config.api_only = true
+    
+    # 主にdeviseを使うのに必要
+    config.middleware.use Rack::MethodOverride
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
+    config.middleware.use ActionDispatch::Flash
+    
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         # TODO:deploy後値を変える
         origins 'http://localhost:3000'
         resource '*',
         :headers => :any,
+        :expose => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
         :methods => [:get, :post, :patch, :delete, :options]
       end
     end
