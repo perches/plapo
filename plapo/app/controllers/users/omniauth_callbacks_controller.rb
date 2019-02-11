@@ -4,7 +4,6 @@ module Users
 
     def omniauth_success
       get_resource_from_auth_hash
-      # create_token_info
       set_token_on_resource
       create_auth_params
 

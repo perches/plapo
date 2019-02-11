@@ -1,14 +1,5 @@
 # frozen_string_literal: true
 
-Rails.application.config.to_prepare do
-  Devise::OmniauthCallbacksController.class_eval do
-    def failure
-      # 認証をキャンセルした場合
-      render json: { message: "Login failed." }, status: 401
-    end
-  end
-end
-
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
