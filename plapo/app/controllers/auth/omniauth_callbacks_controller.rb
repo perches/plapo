@@ -1,8 +1,8 @@
-module Users
+module Auth
   class OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbacksController
     include Devise::Controllers::Rememberable
     # セッションを有効化
-    # skip_before_action :skip_session
+    skip_before_action :skip_session
 
     def redirect_callbacks
       super
