@@ -1,14 +1,5 @@
 production: &production
-  # doorkeeper:
-  #   key: XXXXXXXXXXXXXXXXXXXXXXXXXX
-  #   secret: XXXXXXXXXXXXXXXXXXXXXXXX
-  # google:
-  #   key: XXXXXXXXXXXXXXXXXX
-  #   secret: XXXXXXXXXXXXXXXXXXXx
-  # TODO: 環境変数で隠してあげましょ
-  twitter:
-    key: i1T9y2MvjRQXUMiDkDYuh1cQL
-    secret: p2UCyfZLKsvkeaVMQ39zX4mKfhY3ogGtVyZF99yKCzSP2j7imr
+# 結局これ使ってない
 
 development: &development
   <<: *production
